@@ -8,7 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.uestc.Indoorguider.Constant;
-import com.uestc.Indoorguider.MainActivity;
+import com.uestc.Indoorguider.indoor_map.MainActivity;
 import com.uestc.Indoorguider.util.ClientAgent;
 import com.uestc.Indoorguider.util.ConnectTool;
 import com.uestc.Indoorguider.util.SendToServerThread;

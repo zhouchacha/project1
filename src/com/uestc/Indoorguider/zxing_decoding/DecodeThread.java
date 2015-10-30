@@ -19,7 +19,7 @@ package com.uestc.Indoorguider.zxing_decoding;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.ResultPointCallback;
-import com.uestc.Indoorguider.CaptureActivity;
+import com.uestc.Indoorguider.zxing_view.CaptureActivity;
 
 import android.content.SharedPreferences;
 import android.os.Handler;

@@ -18,10 +18,10 @@ package com.uestc.Indoorguider.zxing_decoding;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
-import com.uestc.Indoorguider.CaptureActivity;
 import com.uestc.Indoorguider.R;
 import com.uestc.Indoorguider.zxing_camera.CameraManager;
 import com.uestc.Indoorguider.zxing_view.*;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;

@@ -26,7 +26,7 @@
         android:theme="@android:style/Theme.NoTitleBar"
      	android:name="com.uestc.Indoorguider.IndoorGuiderApplication">
         >
-	    <activity android:name="com.uestc.Indoorguider.indoor_map.MainActivity"
+	    <activity android:name="com.uestc.Indoorguider.map.MapActivity"
 	              android:theme="@android:style/Theme.NoTitleBar"
 	              android:configChanges="orientation|keyboardHidden|screenSize"
 	              android:launchMode="singleTask" >
@@ -39,20 +39,24 @@
         <activity android:name="com.uestc.Indoorguider.site_show.SiteItemActivity"></activity>    
 	    <activity android:name="com.uestc.Indoorguider.zxing_view.CaptureActivity"
 	              android:screenOrientation="portrait"></activity> 
+	              
 	    <activity android:name="com.uestc.Indoorguider.more.MyActivity"></activity> 
+	     <activity android:name="com.uestc.Indoorguider.more.MoreActivity"
+	              android:launchMode="singleTask" />
+	     <activity android:name="com.uestc.Indoorguider.more.APPHelpActivity"/>
+	     
 	    <activity android:name=".ticket.TicketRequestActivity"></activity> 
 	    <activity android:name=".ticket.TicketInfActivity"></activity>
 	    <activity android:name=".ticket.CityActivity"></activity>  
-	    <activity android:name="com.uestc.Indoorguider.more.MoreActivity"
-	              android:launchMode="singleTask" />
+	   
 	    <activity android:name=".login.LoginActivity" 
 	              android:launchMode="singleTask" />
 	    <activity android:name=".login.RegisterActivity"/>
-	    <activity android:name="com.uestc.Indoorguider.more.APPHelpActivity"/>
+	    
+	    
 	    <activity android:name="com.uestc.Indoorguider.history.HistoryActivity"
 	    		 android:theme="@style/AppTheme"
 	    		 android:launchMode="singleTask"/>
-	     
 	     <activity 
 	     	android:theme="@style/AppTheme"
 	     	android:name="com.uestc.Indoorguider.history.HistoryPathShow"/>

@@ -8,36 +8,27 @@ import org.json.JSONObject;
 import com.uestc.Indoorguider.APPActivity;
 import com.uestc.Indoorguider.Constant;
 import com.uestc.Indoorguider.R;
-import com.uestc.Indoorguider.R.id;
-import com.uestc.Indoorguider.R.layout;
 import com.uestc.Indoorguider.more.MoreActivity;
 import com.uestc.Indoorguider.network.NetworkStateBroadcastReceiver;
 import com.uestc.Indoorguider.orientation.OrientationTool;
 import com.uestc.Indoorguider.site_show.SearchNearestSite;
 import com.uestc.Indoorguider.site_show.SiteActivity;
 import com.uestc.Indoorguider.site_show.SiteInfo;
-import com.uestc.Indoorguider.ticket.TicketRequestActivity;
-import com.uestc.Indoorguider.util.ClientAgent;
 import com.uestc.Indoorguider.util.ConnectTool;
 import com.uestc.Indoorguider.util.SendToServerThread;
-import com.uestc.Indoorguider.wifi.WifiStateReceiver;
 import com.uestc.Indoorguider.zxing_view.CaptureActivity;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.hardware.Sensor;
-import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -58,9 +49,6 @@ import android.webkit.WebSettings.LayoutAlgorithm;
 import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -151,6 +139,10 @@ public class MapActivity extends APPActivity implements OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         initSensors();// 初始化传感器和位置服务
+        //启动service
+	    intent = new Intent();
+	    intent.setAction("com.uestc.Indoorguider.util.UtilService");
+	    startService(intent);
         getWindowSize();
         isGuided = false;
         webView = (MyWebView) findViewById(R.id.webview);
@@ -530,7 +522,7 @@ public class MapActivity extends APPActivity implements OnClickListener{
 		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);	
         accSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);  
         magneticSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);  
-        sensorEventListener = OrientationTool.sensorEventListener;    
+        sensorEventListener = OrientationTool.orientationListener;    
 	}
 	
    //when click the map

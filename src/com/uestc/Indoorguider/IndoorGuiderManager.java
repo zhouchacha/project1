@@ -1,7 +1,5 @@
 package com.uestc.Indoorguider;
 
-import com.easemob.EMCallBack;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -64,7 +62,7 @@ public class IndoorGuiderManager extends IndoorGuiderManagerModel {
 	}
 	
 	
-	public void logout(final CallBack emCallBack){
+	public void logout(){
 		
 		
 	}

@@ -4,7 +4,7 @@ import com.uestc.Indoorguider.R.drawable;
 import com.uestc.Indoorguider.R.id;
 import com.uestc.Indoorguider.R.layout;
 import com.uestc.Indoorguider.R.string;
-import com.uestc.Indoorguider.indoor_map.MainActivity;
+import com.uestc.Indoorguider.map.MapActivity;
 import com.uestc.Indoorguider.network.NetworkStateBroadcastReceiver;
 
 
@@ -54,7 +54,7 @@ public class SiteActivity extends Activity implements OnClickListener{
 		layout_site_row2 = (LinearLayout) findViewById(R.id.site_row2);
 		layout_site_row3 = (LinearLayout) findViewById(R.id.site_row3);
 		
-		int width = MainActivity.windowWidth/3;
+		int width = MapActivity.windowWidth/3;
 		int imgWidth = (int) (width*0.4);
 		android.widget.LinearLayout.LayoutParams imgParam= new LinearLayout.LayoutParams(imgWidth,imgWidth);
 		
@@ -161,7 +161,7 @@ public class SiteActivity extends Activity implements OnClickListener{
 		{
 			case 11:
 				
-			i = new Intent(SiteActivity.this,MainActivity.class);
+			i = new Intent(SiteActivity.this,MapActivity.class);
 			startActivity(i);
 			this.finish();
 				break;

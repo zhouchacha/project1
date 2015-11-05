@@ -26,7 +26,7 @@
         android:theme="@android:style/Theme.NoTitleBar"
      	android:name="com.uestc.Indoorguider.site_show.InitApplication">
         >
-	    <activity android:name="com.uestc.Indoorguider.indoor_map.MainActivity"
+	    <activity android:name="com.uestc.Indoorguider.map.MapActivity"
 	              android:theme="@android:style/Theme.NoTitleBar"
 	              android:configChanges="orientation|keyboardHidden|screenSize"
 	              android:launchMode="singleTask" >

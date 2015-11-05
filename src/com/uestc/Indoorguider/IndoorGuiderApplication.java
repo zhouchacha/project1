@@ -2,8 +2,13 @@ package com.uestc.Indoorguider;
 
 import java.util.Map;
 
+import com.uestc.Indoorguider.orientation.OrientationTool;
+
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 
 
 
@@ -18,7 +23,10 @@ public class IndoorGuiderApplication extends Application {
 		super.onCreate();
 		instance = this;
 		IGManager = new IndoorGuiderManager(this);
-       
+		//开启服务
+	    Intent intent = new Intent();
+	    intent.setAction("com.uestc.Indoorguider.util.UtilService");
+	    startService(intent);
 	}
 
 	public static IndoorGuiderApplication getInstance() {
@@ -32,7 +40,7 @@ public class IndoorGuiderApplication extends Application {
 	 * @return
 	 */
 	public String getUserName() {
-	    return IGManager.getUserName();
+	    return IGManager.getUsername();
 	}
 
 	/**
@@ -50,7 +58,7 @@ public class IndoorGuiderApplication extends Application {
 	 * @param user
 	 */
 	public void setUserName(String username) {
-		IGManager.setUserName(username);
+		IGManager.setUsername(username);
 	}
 
 	
@@ -58,12 +66,24 @@ public class IndoorGuiderApplication extends Application {
 		IGManager.setPassword(password);
 	}
 
+	
+	public boolean getAlreadyLogin(){
+		return IGManager.getAlreadyLogin();
+	}
+	
+	
+	public boolean saveAlreadyLogin(boolean alreadyLogin ){
+		return IGManager.saveAlreadyLogin(alreadyLogin);
+	}
+	
+	
 	/**
 	 * 退出登录,清空数据
 	 */
-	public void logout(final EMCallBack emCallBack) {
+	public void logout() {
 		// 先调用sdk logout，在清理app中自己的数据
-		IGManager.logout(emCallBack);
+		IGManager.logout();
 	}
+	
 }
 

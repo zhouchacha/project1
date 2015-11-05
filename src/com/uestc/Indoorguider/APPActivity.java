@@ -21,16 +21,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public abstract class APPActivity  extends Activity{
-	/**
-	 * handler ±àºÅ
-	 * 0 - MainActivity
-	 * 1 - LoginActivity
-	 * 2 - RegisterActivity
-	 * 3 - MoreActivity
-	 * 4 - MyActivity
-	 * 5 - captureActivity
-	 */
-	protected int handlerID  ;
+	
 	protected abstract void handleResult(JSONObject obj);
 	protected static int handlerNum = 6;
 	int sWidth;

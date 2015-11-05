@@ -64,7 +64,6 @@ public class RegisterActivity extends APPActivity {
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
-		super.handlerID = 3;
 		TextView title = (TextView) findViewById(R.id.title_text);
 		title.setText("ÓÃ»§×¢²á");
 		userName = (EditText) findViewById(R.id.r_username);

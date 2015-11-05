@@ -34,10 +34,8 @@ public class NetworkStateBroadcastReceiver extends BroadcastReceiver {
         	{
         		for(NetworkInfo ni : infos){
         			//wifi开启并已连接上
-            		if(ni.getTypeName().equals("WIFI") && ni.isConnected()){
-            			
+            		if(ni.getTypeName().equals("WIFI") && ni.isConnected()){      			
             			 Log.i(Tag,"wifi 可用！");
-
             		}
         	     }
         	}
@@ -59,7 +57,7 @@ public class NetworkStateBroadcastReceiver extends BroadcastReceiver {
 	            	if(WiFiInfo.isAvailable())//该wifi网络是否可用
 	            	{
 	            		Log.i(Tag,"使用 wifi ");
-	            		String hint = "wifi";
+	            		String hint = "使用 wifi";
 			    		Toast.makeText(context, hint, Toast.LENGTH_LONG).show();
 	            		if(ClientAgent.flag == false)
 	            		{

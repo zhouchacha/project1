@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import com.uestc.Indoorguider.APPActivity;
 import com.uestc.Indoorguider.Constant;
+import com.uestc.Indoorguider.IndoorGuiderManager;
 import com.uestc.Indoorguider.R;
 import com.uestc.Indoorguider.more.MoreActivity;
 import com.uestc.Indoorguider.util.ClientAgent;
@@ -37,7 +38,7 @@ public class LoginActivity extends APPActivity
 	 public Dialog errorDialog;
 	 public String errorMsg;
 	 //记录登录人的id和密码
-	 String userName;
+	 String username;
 	 String userpw;
 	 String did;//记录从SharedPreferences获取的记录的内容
 	 Bundle b;
@@ -55,24 +56,19 @@ public class LoginActivity extends APPActivity
 			    //登录成功
 			    case Constant.LOGIN_SUCCESS:
 			    	//是否自动登录
-			    	SharedPreferences.Editor editor=sp.edit();
 				     if(autoLogin.isChecked())
 				       {
-					    		
-					    		editor.putString("UserName",userName);
-								editor.putString("UserPw",userpw);
-								editor.putBoolean("AutoLogin", true);
+						  IndoorGuiderManager.getInstance().setUsername(username);
+						  IndoorGuiderManager.getInstance().setPassword(userpw);
+								
 								
 				    	}
 				     else{
-				    	    editor.putString("UserName",userName);
-							editor.putString("UserPw",userpw);
-				    	    editor.putBoolean("AutoLogin", false);
+				    	 IndoorGuiderManager.getInstance().setUsername(username);
+						 IndoorGuiderManager.getInstance().setPassword(userpw);
 							
-				    	 
 				     }
-				     editor.putBoolean("HaveLogin",true);
-				     editor.commit();
+					 IndoorGuiderManager.getInstance().saveAlreadyLogin(true);
 			    	 Intent intent=new Intent(LoginActivity.this,MoreActivity.class);
 			    	 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);  
 					 startActivity(intent);
@@ -120,7 +116,6 @@ public class LoginActivity extends APPActivity
 //	       this.getWindow().getDecorView().setSystemUiVisibility(4);
 		   super.onCreate(savedInstanceState);
 	       setContentView(R.layout.activity_login);
-	       super.handlerID = 2;
 	       TextView title = (TextView) findViewById(R.id.title_text);
 		   title.setText("用户登录");
 		   sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -152,11 +147,11 @@ public class LoginActivity extends APPActivity
 				 public void onClick(View v) 
 				   {
 					 //获取输入信息
-						 userName=loginName.getText().toString();
+						 username=loginName.getText().toString();
 						 userpw=loginPw.getText().toString();
 					     
 						//判断登录密码和权限
-						 if(userName.equals(""))
+						 if(username.equals(""))
 						  {
 							 Toast.makeText(LoginActivity.this, "请输入用户名!!!", Toast.LENGTH_SHORT).show(); 
 						      return;
@@ -167,8 +162,8 @@ public class LoginActivity extends APPActivity
 						      return;
 						  }
 						   
-						 //登陆线程
-						 login();
+						 //登陆
+						 IndoorGuiderManager.getInstance().login(username,userpw);
 						 
 				    }	
 		       }        	
@@ -177,31 +172,7 @@ public class LoginActivity extends APPActivity
 	    
 	  }
 	   
-	 //把需要做的内容都放入一个线程中
-	   public void login()
-	   {
-		   WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-		   if(ConnectTool.checkConnect(this,wifiManager))
-		   {
-			   JSONObject obj = new JSONObject();
-				
-				try {
-					obj.put("typecode",Constant.LOGIN_REQUEST_NAME);
-				    obj.put("username", userName);
-					obj.put("password",userpw);
-					Handler handler = SendToServerThread.getHandler();
-					if(handler!= null)
-					{
-						Message msg = handler.obtainMessage();
-						msg.obj = obj;
-						handler.sendMessage(msg);
-					}
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}	 	
-		   }
-		}
+	
 	   
 	   public void onClick(View v){
 	    	this.finish();

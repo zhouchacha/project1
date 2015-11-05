@@ -20,7 +20,7 @@ public class OrientationTool {
     private static final String TAG = "sensor";  
     public static double angle = 0;
 	
-	public static SensorEventListener myListener = new SensorEventListener() {  
+	public static SensorEventListener orientationListener = new SensorEventListener() {  
 	    public void onSensorChanged(SensorEvent sensorEvent) {  
 	          
 	    if (sensorEvent.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD)  

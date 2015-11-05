@@ -8,7 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.uestc.Indoorguider.Constant;
-import com.uestc.Indoorguider.indoor_map.MainActivity;
+import com.uestc.Indoorguider.map.MapActivity;
 import com.uestc.Indoorguider.util.ClientAgent;
 import com.uestc.Indoorguider.util.ConnectTool;
 import com.uestc.Indoorguider.util.SendToServerThread;
@@ -83,7 +83,7 @@ public class WifiStateReceiver extends BroadcastReceiver {
 		rssi += listWifi.get(i).BSSID + "," + (int)(listWifi.get(i).level/(count[i]+1));
 			JSONObject msgObj = new JSONObject();
 			try {
-				if(MainActivity.isForeground == true)
+				if(MapActivity.isForeground == true)
 				{
 					msgObj.put("typecode", Constant.LOCATION_REQUEST_WIFI);
 				}else{

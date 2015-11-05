@@ -1,20 +1,19 @@
 package com.uestc.Indoorguider.site_show;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+
 import android.util.Log;
+
+import com.uestc.Indoorguider.IndoorGuiderApplication;
+
 import edu.wlu.cs.levy.CG.KDTree;
 import edu.wlu.cs.levy.CG.KeyDuplicateException;
 import edu.wlu.cs.levy.CG.KeyMissingException;
 import edu.wlu.cs.levy.CG.KeySizeException;
 public class SearchNearestSite {
 
-	InitApplication mApplication;
+	IndoorGuiderApplication mApplication;
 	private final int sitesNum = 6;
 	private final float nearestDistance = 600;  //间距
 	double[][] sites;
@@ -80,40 +79,5 @@ public class SearchNearestSite {
 			kd.insert(sites[i], i);
 		}
 	}
-	/*
-	public  String findClickedSiteName(SiteInfo goal) {
-		
-		Map<Integer, String> map = new TreeMap<Integer, String>();
-		int len = mApplication.sitesApplication.size();
-		for (int i = 0; i < len; i++) {
-			//when their distance in x or y bigger than nearestDistance, pass
-			if (Math.abs(mApplication.sitesApplication.get(i).getX() - goal.getX()) > nearestDistance
-					|| Math.abs(mApplication.sitesApplication.get(i).getY() - goal.getY()) > nearestDistance)
-				continue;
-			double dis = distance(mApplication.sitesApplication.get(i), goal) ;
-			if (dis <= nearestDistance) {
-				String siteEnName = mApplication.sitesApplication.get(i).getSiteName();
-				String name = mApplication.sitesNameEnAndChinese.get(siteEnName);
-				Log.v("dis", "name: "+name);
-				map.put((int)dis, name);
-			}
-		}
-
-		if (!map.isEmpty()) {
-			Set<Integer> keSet = map.keySet();
-			for (Iterator<Integer> iterator = keSet.iterator(); iterator.hasNext();) {
-	            return map.get(iterator.next());	              
-	        }
-		}
-		return null;
-	}
 	
- //计算两点欧氏距离
-	double distance(SiteInfo point1, SiteInfo point2) {			
-		double res = 0.0;
-		res = Math.pow(Math.abs(point1.getX()- point2.getX()), 2) + 
-				Math.pow(Math.abs(point1.getY() - point2.getY()), 2);
-		return Math.sqrt(res);
-	}
-	*/
 }

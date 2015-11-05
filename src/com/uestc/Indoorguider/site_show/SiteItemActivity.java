@@ -12,7 +12,7 @@ import com.uestc.Indoorguider.R.array;
 import com.uestc.Indoorguider.R.drawable;
 import com.uestc.Indoorguider.R.id;
 import com.uestc.Indoorguider.R.layout;
-import com.uestc.Indoorguider.map.MapActivity;
+import com.uestc.Indoorguider.indoor_map.MainActivity;
 import com.uestc.Indoorguider.network.NetworkStateBroadcastReceiver;
 
 import android.app.Activity;
@@ -86,7 +86,7 @@ public class SiteItemActivity extends Activity implements OnItemClickListener{
 		// TODO Auto-generated method stub
 		
 			
-				Intent i = new Intent(SiteItemActivity.this,MapActivity.class);
+				Intent i = new Intent(SiteItemActivity.this,MainActivity.class);
 				//i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 				i.putExtra("siteName",site[position]);
 				setResult(RESULT_CODE, i);  

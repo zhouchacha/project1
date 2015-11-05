@@ -1,5 +1,8 @@
 package com.uestc.Indoorguider.history;
-
+/*
+ * 主要功能是将用户的一条轨迹显示到地图上，有查看具体时刻位置功能（滑动底部圆点）
+ * 
+ */
 import java.util.List;
 import com.uestc.Indoorguider.R;
 import android.annotation.SuppressLint;
@@ -188,7 +191,7 @@ public class HistoryPathShow extends Activity implements
 		backButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				Intent clickIntent = new Intent(HistoryPathShow.this, HistoryRecorder.class);
+				Intent clickIntent = new Intent(HistoryPathShow.this, HistoryActivity.class);
 				finish();
 				startActivity(clickIntent);					
 			}

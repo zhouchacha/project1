@@ -42,7 +42,7 @@ import com.uestc.Indoorguider.R;
 import com.uestc.Indoorguider.R.id;
 import com.uestc.Indoorguider.R.layout;
 import com.uestc.Indoorguider.R.raw;
-import com.uestc.Indoorguider.map.MapActivity;
+import com.uestc.Indoorguider.indoor_map.MainActivity;
 import com.uestc.Indoorguider.network.NetworkStateBroadcastReceiver;
 import com.uestc.Indoorguider.zxing_camera.CameraManager;
 import com.uestc.Indoorguider.zxing_decoding.CaptureActivityHandler;
@@ -224,11 +224,11 @@ public class CaptureActivity extends Activity implements Callback
 			e.printStackTrace();
 			return;
 		}
-		Intent i = new Intent(CaptureActivity.this,MapActivity.class);
+		Intent i = new Intent(CaptureActivity.this,MainActivity.class);
 		Bundle bd = new Bundle();
 		bd.putStringArray("addr", location);
 		i.putExtra("location", bd);
-		CaptureActivity.this.setResult(MapActivity.RESULT_MYLOCATION,i);
+		CaptureActivity.this.setResult(MainActivity.RESULT_MYLOCATION,i);
 		this.finish();
 		//--------------Thread  locationThread = new SocketClient(jObj);
 		//---------------locationThread.start();

@@ -1,5 +1,7 @@
 package com.uestc.Indoorguider.history;
-
+/*
+ * Â·¾¶µã×ø±ê
+ */
 import java.io.Serializable;
 
 public class Site  implements Serializable{

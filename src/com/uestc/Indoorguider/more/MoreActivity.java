@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import com.uestc.Indoorguider.R;
 import com.uestc.Indoorguider.R.id;
 import com.uestc.Indoorguider.R.layout;
-import com.uestc.Indoorguider.history.HistoryRecorder;
+import com.uestc.Indoorguider.history.HistoryActivity;
+import com.uestc.Indoorguider.indoor_map.MainActivity;
 import com.uestc.Indoorguider.login.LoginActivity;
-import com.uestc.Indoorguider.map.MapActivity;
 import com.uestc.Indoorguider.util.ClientAgent;
 
 
@@ -72,25 +72,25 @@ public class MoreActivity extends Activity implements OnClickListener{
 		//setIP.setOnClickListener(this);
 		//动态变化view组件
 		android.view.ViewGroup.LayoutParams  params1 = layout_have_login.getLayoutParams();
-        params1.height =(int) (MapActivity.windowWidth*0.26) ;
+        params1.height =(int) (MainActivity.windowWidth*0.26) ;
         layout_have_login.setLayoutParams(params1);
         layout_have_login.setOnClickListener(this);
         android.view.ViewGroup.LayoutParams  params2 = layout_no_login.getLayoutParams();
-        params2.height =(int) (MapActivity.windowWidth*0.26) ;
+        params2.height =(int) (MainActivity.windowWidth*0.26) ;
         layout_no_login.setLayoutParams(params2);
         //用户头像
-        int userImgWidth = (int) (MapActivity.windowWidth*0.2);
+        int userImgWidth = (int) (MainActivity.windowWidth*0.2);
         ImageView img2 = (ImageView) findViewById(R.id.have_log_img);
         ImageView img = (ImageView) findViewById(R.id.no_log_img);
         img2.setLayoutParams(new RelativeLayout.LayoutParams(userImgWidth,userImgWidth));
         img.setLayoutParams(new LinearLayout.LayoutParams(userImgWidth,userImgWidth));
         //历史条
         android.view.ViewGroup.LayoutParams  params4 = history_lay.getLayoutParams();
-        params4.height =(int) (MapActivity.windowWidth*0.14) ;
+        params4.height =(int) (MainActivity.windowWidth*0.14) ;
         history_lay.setLayoutParams(params4);
         ImageView historyimg = (ImageView) findViewById(R.id.history_img);
         android.view.ViewGroup.LayoutParams  params5 = historyimg.getLayoutParams();
-        params5.width = params5.height =(int) (MapActivity.windowWidth*0.1) ;
+        params5.width = params5.height =(int) (MainActivity.windowWidth*0.1) ;
         historyimg.setLayoutParams(params5);
 		mPrefrences.registerOnSharedPreferenceChangeListener(new OnSharedPreferenceChangeListener(){
 
@@ -129,7 +129,7 @@ public class MoreActivity extends Activity implements OnClickListener{
 				startActivity(i);
 				return;
 			case R.id.back_icon:
-				i = new Intent(this, MapActivity.class);
+				i = new Intent(this, MainActivity.class);
 				this.finish();
 				startActivity(i);
 				return;
@@ -151,7 +151,7 @@ public class MoreActivity extends Activity implements OnClickListener{
 		switch(v.getId())
 		{
 			case R.id.history_lay:
-				i = new Intent(this, HistoryRecorder.class);
+				i = new Intent(this, HistoryActivity.class);
 				//this.finish();
 				startActivity(i);
 				break;

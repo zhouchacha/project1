@@ -1,12 +1,14 @@
 package com.uestc.Indoorguider.history;
-
+/*
+ * 每个listView中所显示的内容，其中包括时间、地名、轨迹等
+ */
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-//每个listView所显示的内容，其中包括时间、地名、轨迹等
+
 public class HistoryItem implements Serializable{
 
 	private Date date;

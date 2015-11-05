@@ -31,7 +31,7 @@ import android.widget.Toast;
 import com.uestc.Indoorguider.Constant;
 import com.uestc.Indoorguider.R;
 import com.uestc.Indoorguider.R.string;
-import com.uestc.Indoorguider.map.MapActivity;
+import com.uestc.Indoorguider.indoor_map.MainActivity;
 public class  ClientAgent extends Thread
 {
 	static Socket sc;

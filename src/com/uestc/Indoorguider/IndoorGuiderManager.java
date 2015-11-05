@@ -1,24 +1,17 @@
 package com.uestc.Indoorguider;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.easemob.EMCallBack;
 
-import com.uestc.Indoorguider.util.ConnectTool;
-import com.uestc.Indoorguider.util.SendToServerThread;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.wifi.WifiManager;
-import android.os.Handler;
-import android.os.Message;
 import android.preference.PreferenceManager;
-/**
- * 管理类，单例模式，必须先实例化再使用*/
+
 public class IndoorGuiderManager extends IndoorGuiderManagerModel {
 	 private static final String PREF_USERNAME = "username";
 	 private static final String PREF_PWD = "pwd";
 	 private static final String PREF_ALREADY_LOGIN = "already_login";
 	 private Context context = null;
-	 private static IndoorGuiderManager me ;
+	 private static IndoorGuiderManager me;
 	 public IndoorGuiderManager(Context context){
 		 this.context = context;
 		 me = this;
@@ -31,14 +24,14 @@ public class IndoorGuiderManager extends IndoorGuiderManagerModel {
 	 
 	 
 	 @Override
-	public boolean setUsername(String username) {
+	public boolean setUserName(String username) {
 		// TODO Auto-generated method stub
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.edit().putString(PREF_USERNAME, username).commit();
 	
 	}
 	@Override
-	public String getUsername() {
+	public String getUserName() {
 		// TODO Auto-generated method stub
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString(PREF_USERNAME, "unkonwname");
@@ -71,54 +64,9 @@ public class IndoorGuiderManager extends IndoorGuiderManagerModel {
 	}
 	
 	
-    public void logout()
-	{
-		WifiManager wifiManager = (WifiManager) IndoorGuiderApplication.getInstance().getSystemService(Context.WIFI_SERVICE);
-		if(ConnectTool.checkConnect(IndoorGuiderApplication.getInstance(),wifiManager))
-		{
-			JSONObject obj = new JSONObject();
-			try {
-				obj.put("typecode", Constant.LOGOUT_REQUEST);
-				obj.put("username",IndoorGuiderApplication.getInstance().getUserName());
-				Handler handler = SendToServerThread.getHandler();
-				if(handler!= null)
-				{
-					Message msg = handler.obtainMessage();
-					msg.obj = obj;		
-					handler.sendMessage(msg);
-				}
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	 	
-		} 		
+	public void logout(final CallBack emCallBack){
+		
 		
 	}
-	
-	 public void login(String username, String password)
-	   {
-		   WifiManager wifiManager = (WifiManager) IndoorGuiderApplication.getInstance().getSystemService(Context.WIFI_SERVICE);
-		   if(ConnectTool.checkConnect(IndoorGuiderApplication.getInstance(),wifiManager))
-		   {
-			   JSONObject obj = new JSONObject();
-				
-				try {
-					obj.put("typecode",Constant.LOGIN_REQUEST_NAME);
-				    obj.put("username", username);
-					obj.put("password",password);
-					Handler handler = SendToServerThread.getHandler();
-					if(handler!= null)
-					{
-						Message msg = handler.obtainMessage();
-						msg.obj = obj;
-						handler.sendMessage(msg);
-					}
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}	 	
-		   }
-	   }
-	   
 
 }

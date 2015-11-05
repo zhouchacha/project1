@@ -94,7 +94,7 @@ public class MyActivity extends APPActivity implements OnTouchListener {
 			case R.id.my_username:
 				break;
 			case R.id.logout_lay:
-				IndoorGuiderManager.getInstance().logout();
+				logout();
 				break;
 			case R.id.my_sex:
 				break;
@@ -114,7 +114,28 @@ public class MyActivity extends APPActivity implements OnTouchListener {
 		}
 		return false;
 	}
-	
-	
+	private void logout()
+	{
+		WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+		if(ConnectTool.checkConnect(this,wifiManager))
+		{
+			JSONObject obj = new JSONObject();
+			try {
+				obj.put("typecode", Constant.LOGOUT_REQUEST);
+				obj.put("username",IndoorGuiderApplication.getInstance().getUserName());
+				Handler handler = SendToServerThread.getHandler();
+				if(handler!= null)
+				{
+					Message msg = handler.obtainMessage();
+					msg.obj = obj;		
+					handler.sendMessage(msg);
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	 	
+		} 		
+		
+	}
 	
 }

@@ -1,5 +1,13 @@
 package com.uestc.Indoorguider.history;
-
+/*
+ * 使用本地SQLite数据库，数据库存储位置为sdcard/indorguider文件内
+ * 数据库中建立了两张表，HISTORY_TABLE和PATHPOINTS_TABLE
+ * 第一张表为轨迹条目主要内容，即日期(date)，起始时间（starttime），终止时间(endtime)，mapid未用
+ * 第二张表为每条轨迹条目中的路径点，有X轴(xpoint)，Y轴(ypoint),Z轴(zpoint)
+ * 两张表使用FIELD_historyid关联
+ * 
+ * 本文件主要提供了插入数据、删除数据、获取数据、判断数据为空等功能
+ */
 import java.io.File;
 import java.util.List;
 import android.content.ContentValues;
